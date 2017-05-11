@@ -1,0 +1,29 @@
+install MongoDB by following the instructions from the below link
+--https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+--http://stackoverflow.com/questions/2438055/how-to-run-mongodb-as-windows-service
+
+Create an Excel connection from EM and save the xls as EM.xls.This will export EM dump as EM.xlsx.
+Copy EM.xlsx to C:\PyEM\Input directory
+Copy LCR dump as tab separated lcr_data.tsv to C:\PyEM\Input directory
+Copy RATE dump as tab separated bill_rate.tsv to C:\PyEM\Input directory
+
+Open a cmd session and go to the following path:
+C:\Program Files\MongoDB\Server\3.2\bin
+
+Open the mongo.exe program to invoke mongo shell
+Check if the database exists by issuing the command: show dbs
+
+Create 4 collections:
+EM_RESOURCES --> Not required to load.
+LCR_DETAILS --> mongoimport -d "pyem_local" -c "LCR_DETAILS" --type tsv --file C:\PyEM\Input\lcr_data.tsv --headerline
+RATE_CARD --> mongoimport -d "pyem_local" -c "RATE_CARD" --type tsv --file C:\PyEM\Input\bill_rate.tsv --headerline
+MISC_INFO -->
+Create entries as per the image config_db.jpg
+
+Make the python executable and enjoy!!!
+C:\Python27>python C:\Users\bishnu.prasad.bhatta\PycharmProjects\MyProjects\setup.py py2exe
+
+
+All reports generated are placed in Output folder.
+
+
